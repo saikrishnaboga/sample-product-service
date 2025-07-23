@@ -68,20 +68,25 @@ public class FakeStoreProductService implements ProductService{
 
     @Override
     public List<GenericProductDto> getAllProducts() {
-        List<GenericProductDto> listOfProducts = new ArrayList<>();
+
         RestTemplate restTemplate = restTemplateBuilder.build();
-        ResponseEntity<List<FakeStoreProductDto>> response =
-                restTemplate.exchange(productRequestUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<FakeStoreProductDto>>(){});
-        List<FakeStoreProductDto> products =  response.getBody();
-        for(int i=0; i< products.size(); i++){
+        ResponseEntity<FakeStoreProductDto[]> response =
+                restTemplate.getForEntity(productRequestUrl, FakeStoreProductDto[].class);
+
+//        ParameterizedTypeReference<List<FakeStoreProductDto>> other way to achieve  it
+        FakeStoreProductDto[] fakeStoreProductDtos = response.getBody();
+        List<GenericProductDto> listOfProducts = new ArrayList<>();
+
+        for(FakeStoreProductDto fakeStoreProductDto:fakeStoreProductDtos){
 
             GenericProductDto genericProductDto = new GenericProductDto();
-            genericProductDto.setId(products.get(i).getId());
-            genericProductDto.setCategory(products.get(i).getCategory());
-            genericProductDto.setTitle(products.get(i).getTitle());
-            genericProductDto.setPrice(products.get(i).getPrice());
-            genericProductDto.setDescription(products.get(i).getDescription());
-            genericProductDto.setImage(products.get(i).getImage());
+            genericProductDto.setId(fakeStoreProductDto.getId());
+            genericProductDto.setCategory(fakeStoreProductDto.getCategory());
+            genericProductDto.setTitle(fakeStoreProductDto.getTitle());
+            genericProductDto.setPrice(fakeStoreProductDto.getPrice());
+            genericProductDto.setDescription(fakeStoreProductDto.getDescription());
+            genericProductDto.setImage(fakeStoreProductDto.getImage());
+
             listOfProducts.add(genericProductDto);
         }
 
