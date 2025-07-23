@@ -44,5 +44,8 @@ public class ProductController {
         return productService.createProduct(genericProductDto);
     }
 
-
+    @DeleteMapping("id")
+    public GenericProductDto deleteProduct(@PathVariable("id") Long id){
+        return productService.deleteProduct(id);
+    }
 }

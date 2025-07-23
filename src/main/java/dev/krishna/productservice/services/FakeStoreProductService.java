@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.ParameterResolutionDelegate;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMessage;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -94,5 +91,23 @@ public class FakeStoreProductService implements ProductService{
         return listOfProducts;
 
 
+    }
+
+    @Override
+    public GenericProductDto deleteProduct(Long id) {
+        RestTemplate restTemplate = restTemplateBuilder.build();
+        ResponseEntity<FakeStoreProductDto> response =   restTemplate.exchange(productUrl, HttpMethod.DELETE, null, FakeStoreProductDto.class, id);
+
+        FakeStoreProductDto fakeStoreProductDto = response.getBody();
+        GenericProductDto genericProductDto = new GenericProductDto();
+        genericProductDto.setId(fakeStoreProductDto.getId());
+        genericProductDto.setCategory(fakeStoreProductDto.getCategory());
+        genericProductDto.setTitle(fakeStoreProductDto.getTitle());
+        genericProductDto.setPrice(fakeStoreProductDto.getPrice());
+        genericProductDto.setDescription(fakeStoreProductDto.getDescription());
+        genericProductDto.setImage(fakeStoreProductDto.getImage());
+
+
+        return null;
     }
 }
