@@ -2,6 +2,7 @@ package dev.krishna.productservice.services;
 
 import dev.krishna.productservice.dtos.FakeStoreProductDto;
 import dev.krishna.productservice.dtos.GenericProductDto;
+import dev.krishna.productservice.exceptions.NotFoundException;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.ParameterResolutionDelegate;
@@ -27,24 +28,6 @@ public class FakeStoreProductService implements ProductService{
         this.restTemplateBuilder = restTemplateBuilder;
     }
 
-    @Override
-    public GenericProductDto getProductById(Long id){
-        RestTemplate restTemplate = restTemplateBuilder.build();
-        ResponseEntity<FakeStoreProductDto>  response = restTemplate.getForEntity(productUrl, FakeStoreProductDto.class, id);
-
-        FakeStoreProductDto fakeStoreProductDto = response.getBody();
-        GenericProductDto genericProductDto = new GenericProductDto();
-        genericProductDto.setId(fakeStoreProductDto.getId());
-        genericProductDto.setTitle(fakeStoreProductDto.getTitle());
-        genericProductDto.setPrice(fakeStoreProductDto.getPrice());
-        genericProductDto.setDescription(fakeStoreProductDto.getDescription());
-        genericProductDto.setCategory(fakeStoreProductDto.getCategory());
-        genericProductDto.setImage(fakeStoreProductDto.getImage());
-
-
-        return  genericProductDto;
-    }
-
     public GenericProductDto convertfakeStoreDtoToGenericStoreDto(FakeStoreProductDto fakeStoreProductDto){
         GenericProductDto genericProductDto = new GenericProductDto();
         genericProductDto.setId(fakeStoreProductDto.getId());
@@ -52,10 +35,28 @@ public class FakeStoreProductService implements ProductService{
         genericProductDto.setTitle(fakeStoreProductDto.getTitle());
         genericProductDto.setPrice(fakeStoreProductDto.getPrice());
         genericProductDto.setDescription(fakeStoreProductDto.getDescription());
-        genericProductDto.setCategory(fakeStoreProductDto.getCategory());\
+        genericProductDto.setCategory(fakeStoreProductDto.getCategory());
 
         return genericProductDto;
     }
+
+    @Override
+    public GenericProductDto getProductById(Long id) throws NotFoundException {
+        RestTemplate restTemplate = restTemplateBuilder.build();
+        ResponseEntity<FakeStoreProductDto>  response = restTemplate.getForEntity(productUrl, FakeStoreProductDto.class, id);
+
+        FakeStoreProductDto fakeStoreProductDto = response.getBody();
+
+        if(fakeStoreProductDto == null){
+            throw new NotFoundException("Product with id: " + id + " not found");
+        }
+
+        GenericProductDto genericProductDto = convertfakeStoreDtoToGenericStoreDto(fakeStoreProductDto);
+
+        return  genericProductDto;
+    }
+
+
 
 
     @Override
