@@ -54,8 +54,8 @@ public class ProductController {
 //        return productService.deleteProduct(id);
     }
 //    this is specific to this controller
-    @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<ExceptionDto> handlerNotFoundException(NotFoundException notFoundException){
-        return new ResponseEntity<>(new ExceptionDto(HttpStatus.NOT_FOUND, notFoundException.getMessage()), HttpStatus.NOT_FOUND);
-    }
+//    @ExceptionHandler(NotFoundException.class)
+//    public ResponseEntity<ExceptionDto> handlerNotFoundException(NotFoundException notFoundException){
+//        return new ResponseEntity<>(new ExceptionDto(HttpStatus.NOT_FOUND, notFoundException.getMessage()), HttpStatus.NOT_FOUND);
+//    }
 }
