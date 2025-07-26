@@ -18,10 +18,7 @@ import java.util.*;
 @Service("fakeStoreProductService")
 public class FakeStoreProductService implements ProductService{
 
-    private String productUrl = "https://fakestoreapi.com/products/{id}";
-    private String productRequestUrl = "https://fakestoreapi.com/products/";
 
-    private RestTemplateBuilder restTemplateBuilder;
 
     @Autowired
     public FakeStoreProductService(RestTemplateBuilder restTemplateBuilder){
