@@ -18,8 +18,6 @@ import java.util.*;
 @Service("fakeStoreProductService")
 public class FakeStoreProductService implements ProductService{
 
-
-
     @Autowired
     public FakeStoreProductService(RestTemplateBuilder restTemplateBuilder){
         this.restTemplateBuilder = restTemplateBuilder;
