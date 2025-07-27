@@ -21,16 +21,12 @@ public class FakeStoreProductCilent {
 
     private String productUrl = "https://fakestoreapi.com/products/{id}";
     private String productRequestUrl = "https://fakestoreapi.com/products/";
-
     private RestTemplateBuilder restTemplateBuilder;
 
     @Autowired
     public FakeStoreProductCilent(RestTemplateBuilder restTemplateBuilder){
         this.restTemplateBuilder = restTemplateBuilder;
     }
-
-
-
 
     public FakeStoreProductDto getProductById(Long id) throws NotFoundException {
         RestTemplate restTemplate = restTemplateBuilder.build();
@@ -44,8 +40,6 @@ public class FakeStoreProductCilent {
 
         return  fakeStoreProductDto;
     }
-
-
 
 
     public FakeStoreProductDto createProduct(GenericProductDto product) {

@@ -58,7 +58,7 @@ public class FakeStoreProductService implements ProductService{
     @Override
     public List<GenericProductDto> getAllProducts() {
 
-//        ParameterizedTypeReference<List<FakeStoreProductDto>> other way to achieve  it
+//      ParameterizedTypeReference<List<FakeStoreProductDto>> other way to achieve  it
         List<FakeStoreProductDto> fakeStoreProductDtos =
                 fakeStoreProductCilent.getAllProducts();
 
@@ -69,10 +69,7 @@ public class FakeStoreProductService implements ProductService{
             listOfProducts.add(genericProductDto);
         }
 
-
         return listOfProducts;
-
-
     }
 
     @Override
