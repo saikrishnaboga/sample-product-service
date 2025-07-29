@@ -4,6 +4,7 @@ import dev.krishna.productservice.dtos.FakeStoreProductDto;
 import dev.krishna.productservice.dtos.GenericProductDto;
 import dev.krishna.productservice.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,18 @@ import java.util.List;
 
 @Component
 public class FakeStoreProductCilent {
+
+    @Value("fakestore.api.baseurl")
+    private String fakeStoreApiBaseUrl;
+
+    @Value("fakestore.api.product")
+    private String fakeStoreProductPath;
+
+    private final String productPath = "/products";
+
+    private String productUrl = fakeStoreApiBaseUrl + productPath + "/{id}";
+
+    private String productBaseUrl = fakeStoreApiBaseUrl + fakeStoreProductPath;
 
     private String productUrl = "https://fakestoreapi.com/products/{id}";
     private String productRequestUrl = "https://fakestoreapi.com/products/";
