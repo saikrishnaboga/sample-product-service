@@ -32,8 +32,6 @@ public class FakeStoreProductCilent {
 
     private String productBaseUrl = fakeStoreApiBaseUrl + fakeStoreProductPath;
 
-    private String productUrl = "https://fakestoreapi.com/products/{id}";
-    private String productRequestUrl = "https://fakestoreapi.com/products/";
     private RestTemplateBuilder restTemplateBuilder;
 
     @Autowired
@@ -42,6 +40,8 @@ public class FakeStoreProductCilent {
     }
 
     public FakeStoreProductDto getProductById(Long id) throws NotFoundException {
+        System.out.println(fakeStoreApiBaseUrl);
+        System.out.println(productUrl);
         RestTemplate restTemplate = restTemplateBuilder.build();
         ResponseEntity<FakeStoreProductDto> response = restTemplate.getForEntity(productUrl, FakeStoreProductDto.class, id);
 
