@@ -49,7 +49,6 @@ public class FakeStoreProductCilent {
         ResponseEntity<FakeStoreProductDto> response = restTemplate.getForEntity(productUrl, FakeStoreProductDto.class, id);
 
         FakeStoreProductDto fakeStoreProductDto = response.getBody();
-
         if(fakeStoreProductDto == null){
             throw new NotFoundException("Product with id: " + id + " not found");
         }
