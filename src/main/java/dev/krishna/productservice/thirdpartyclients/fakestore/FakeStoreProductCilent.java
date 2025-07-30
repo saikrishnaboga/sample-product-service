@@ -20,23 +20,26 @@ import java.util.List;
 @Component
 public class FakeStoreProductCilent {
 
-    @Value("fakestore.api.baseurl")
+    @Value("${fakestore.api.baseurl}")
     private String fakeStoreApiBaseUrl;
 
-    @Value("fakestore.api.product")
+    @Value("${fakestore.api.product}")
     private String fakeStoreProductPath;
 
     private final String productPath = "/products";
 
     private String productUrl = fakeStoreApiBaseUrl + productPath + "/{id}";
 
-    private String productBaseUrl = fakeStoreApiBaseUrl + fakeStoreProductPath;
+    private String productRequestUrl = fakeStoreApiBaseUrl + fakeStoreProductPath;
 
     private RestTemplateBuilder restTemplateBuilder;
 
     @Autowired
-    public FakeStoreProductCilent(RestTemplateBuilder restTemplateBuilder){
+    public FakeStoreProductCilent(RestTemplateBuilder restTemplateBuilder, @Value("${fakestore.api.baseurl}") String fakeStoreApiBaseUrl, @Value("${fakestore.api.product}") String fakeStoreProductPath){
         this.restTemplateBuilder = restTemplateBuilder;
+        this.productUrl = fakeStoreApiBaseUrl + productPath + "/{id}";
+        this.productRequestUrl = fakeStoreApiBaseUrl + fakeStoreProductPath;
+
     }
 
     public FakeStoreProductDto getProductById(Long id) throws NotFoundException {
