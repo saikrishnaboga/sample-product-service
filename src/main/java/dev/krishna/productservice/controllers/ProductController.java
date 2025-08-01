@@ -40,7 +40,7 @@ public class ProductController {
     }
 
     public void updateProductById() {
-
+        product.updateProductById();
     }
 
     @PostMapping
