@@ -40,7 +40,7 @@ public class ProductController {
     }
 
     public GenericProductDto updateProductById() {
-        return product.updateProductById();
+        return productService.updateProductById();
     }
 
     @PostMapping
