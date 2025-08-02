@@ -42,6 +42,8 @@ public class FakeStoreProductCilent {
 
     }
 
+
+
     public FakeStoreProductDto getProductById(Long id) throws NotFoundException {
         System.out.println(fakeStoreApiBaseUrl);
         System.out.println(productUrl);
@@ -58,6 +60,16 @@ public class FakeStoreProductCilent {
 
 
     public FakeStoreProductDto createProduct(GenericProductDto product) {
+        RestTemplate restTemplate = restTemplateBuilder.build();
+        ResponseEntity<FakeStoreProductDto> response =  restTemplate.postForEntity(
+                productRequestUrl, product, FakeStoreProductDto.class);
+
+        FakeStoreProductDto fakeStoreProductDto = response.getBody();
+
+        return fakeStoreProductDto;
+    }
+
+    public FakeStoreProductDto updateProductById(GenericProductDto product) {
         RestTemplate restTemplate = restTemplateBuilder.build();
         ResponseEntity<FakeStoreProductDto> response =  restTemplate.postForEntity(
                 productRequestUrl, product, FakeStoreProductDto.class);

@@ -39,8 +39,8 @@ public class ProductController {
         return  productService.getProductById(id);
     }
 
-    public void updateProductById() {
-        product.updateProductById();
+    public GenericProductDto updateProductById() {
+        return product.updateProductById();
     }
 
     @PostMapping
