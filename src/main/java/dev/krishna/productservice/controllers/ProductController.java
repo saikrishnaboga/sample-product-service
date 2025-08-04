@@ -29,8 +29,6 @@ public class ProductController {
 //
 //    }
 
-
-
     @GetMapping
     public List<GenericProductDto> getAllProducts(){
         return productService.getAllProducts();
@@ -55,8 +53,6 @@ public class ProductController {
         return new ResponseEntity<>(productService.deleteProduct(id), HttpStatus.OK);
 //        return productService.deleteProduct(id);
     }
-
-
 
 //    this is specific to this controller
 //    @ExceptionHandler(NotFoundException.class)

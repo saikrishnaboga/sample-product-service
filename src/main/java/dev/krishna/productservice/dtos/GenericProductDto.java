@@ -13,4 +13,5 @@ public class GenericProductDto {
     private String image;
     private String category;
     private double price;
+
 }
