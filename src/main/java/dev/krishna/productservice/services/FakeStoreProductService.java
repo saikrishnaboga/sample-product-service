@@ -79,4 +79,9 @@ public class FakeStoreProductService implements ProductService{
                 fakeStoreProductCilent.deleteProduct(id)
         );
     }
+
+    @Override
+    public GenericProductDto updateProductById(Long id) {
+        return null;
+    }
 }
