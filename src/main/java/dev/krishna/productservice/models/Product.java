@@ -17,8 +17,8 @@ public class Product extends BaseModel {
     private String category;
     private double price;
 
-    public static void main(String args[]){
-        UUID id = new UUID.randomUUID();
+    public static void main(String[] args){
+        UUID id = UUID.randomUUID();
         System.out.println(id);
     }
 }
