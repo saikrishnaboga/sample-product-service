@@ -97,6 +97,8 @@ public class FakeStoreProductCilent {
         ResponseEntity<FakeStoreProductDto> response =   restTemplate.exchange(productUrl, HttpMethod.DELETE, null, FakeStoreProductDto.class, id);
 
         FakeStoreProductDto fakeStoreProductDto = response.getBody();
+
+
         return fakeStoreProductDto;
     }
 }
