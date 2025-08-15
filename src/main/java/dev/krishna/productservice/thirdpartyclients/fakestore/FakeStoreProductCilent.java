@@ -98,7 +98,6 @@ public class FakeStoreProductCilent {
 
         FakeStoreProductDto fakeStoreProductDto = response.getBody();
 
-
         return fakeStoreProductDto;
     }
 }
