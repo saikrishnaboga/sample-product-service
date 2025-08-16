@@ -16,11 +16,13 @@ public class Product extends BaseModel {
     private String image;
 
     @ManyToOne
-    private String category;
+    private Category category;
     private double price;
 
-//    public static void main(String[] args){
-//        UUID id = UUID.randomUUID();
-//        System.out.println(id);
-//    }
+    public static void main(String[] args){
+        UUID id = UUID.randomUUID();
+        System.out.println(id);
+    }
+
+
 }
